@@ -1,0 +1,70 @@
+import decimal
+
+def calcular_frete():
+    print("DIGITE A DISTÂNCIA ATÉ O LOCAL")
+    km = decimal.Decimal(input())
+    dobra = km * decimal.Decimal('2')
+
+    print(">> ATENÇÃO !!! <<")
+    print("- O KM INFORMADO REPRESENTARÁ IDA E VOLTA AO LOCAL DE DESTINO -")
+    print("- O CÁLCULO FOI BASEADO NO VALOR DE", dobra, "QUILOMETROS -")
+    print("=================================================================")
+
+    print("TABELA DE DESPESAS")
+    print("=================================================================")
+
+    GNV = decimal.Decimal('0.4') * dobra
+    print("# VALOR A SER GASTO EM GÁS NATURAL:", GNV)
+
+    combustivel = decimal.Decimal('0.6') * dobra
+    desc_combustivel = decimal.Decimal('0.3') * combustivel
+    print("# VALOR A SER GASTO EM COMBUSTÍVEL:", desc_combustivel)
+
+    vl_combustivel = GNV + desc_combustivel
+    print(">>>>", vl_combustivel, "REAIS <<<<")
+    print("=================================================================")
+
+    pneu = decimal.Decimal('0.1') * km
+    print("# TX DESTINADA A MANUTENÇÃO >> PNEUS:", pneu, "REAIS")
+
+    oleo = decimal.Decimal('0.1') * km
+    print("# TX DESTINADA A MANUTENÇÃO >> ÓLEO:", oleo, "REAIS")
+
+    limpeza = decimal.Decimal('20.00')
+    print("# TX DESTINADA A LIMPEZA:", limpeza, "REAIS")
+
+    kit_gnv = decimal.Decimal('15.00')
+    print("# TX DESTINADA AO KIT GÁS:", kit_gnv, "REAIS")
+
+    rack = decimal.Decimal('4.00')
+    print("# TX DEDUZIDA AO RACK:", rack, "REAIS")
+
+    ipva = decimal.Decimal('6.00')
+    print("# VALOR DEDUZIDO AO IPVA:", ipva, "REAIS")
+    print("=================================================================")
+
+    vl_taxas = pneu + oleo + limpeza + kit_gnv + rack + ipva
+    print("VALOR DESTINADO À MANUTENÇÃO >>>>", vl_taxas, "REAIS")
+    print("================================================================")
+
+    total = vl_combustivel + vl_taxas
+    print("TOTAL GERAL DE DESPESAS:", total, "REAIS")
+    print("=================================================================")
+
+    vl_frete = total * decimal.Decimal('2')
+    if vl_frete <= decimal.Decimal('149.99'):
+        print("VALOR A SER COBRADO NO FRETE: 150.00 REAIS")
+    else:
+        print("VALOR A SER COBRADO NO FRETE:", vl_frete, "REAIS")
+    print("==============================================================")
+
+    lucro = vl_frete - total
+    print("O LUCRO PARA O FRETE É DE", lucro, "REAIS")
+    print("=================================================================")
+
+    print(".")
+    print(".")
+    print("# ATÉ AQUI NOS AJUDOU O SENHOR.")
+
+
+calcular_frete()
