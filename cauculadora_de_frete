@@ -1,0 +1,80 @@
+import random
+
+class Cliente:
+    def __init__(self, nome, sobrenome, cep, cpf, contato):
+        self.nome = nome
+        self.sobrenome = sobrenome
+        self.cep = cep
+        self.cpf = cpf
+        self.contato = contato
+
+class Pet:
+    def __init__(self, nome, raca, idade):
+        self.nome = nome
+        self.raca = raca
+        self.idade = idade
+
+class Orcamento:
+    def __init__(self, numero, cliente, pet, valor_total, servico):
+        self.numero = numero
+        self.cliente = cliente
+        self.pet = pet
+        self.valor_total = valor_total
+        self.servico = servico
+
+def obter_nome_completo():
+    nome = input("Informe o nome do cliente: ").strip().title()
+    sobrenome = input("Informe o sobrenome do cliente: ").strip().title()
+
+    if sobrenome == "":
+        print("Sobrenome não pode estar vazio. Por favor, informe novamente.")
+        return obter_nome_completo()
+
+    return nome, sobrenome
+
+def obter_dados_cliente():
+    nome, sobrenome = obter_nome_completo()
+    cep = input("Informe o CEP do cliente: ").strip()
+    cpf = input("Informe o CPF do cliente: ").strip()
+    contato = input("Informe o telefone de contato do cliente: ").strip()
+    return Cliente(nome, sobrenome, cep, cpf, contato)
+
+def obter_dados_pet():
+    nome = input("Informe o nome do pet: ").strip().title()
+    raca = input("Informe a raça do pet: ").strip().title()
+    idade = input("Informe a idade do pet em anos: ").strip()
+    return Pet(nome, raca, idade)
+
+def obter_numero_orcamento():
+    return random.randint(1000, 9999)
+
+def imprimir_orcamento(orcamento):
+    print("=======================================================")
+    print("           RESUMO DO ORÇAMENTO                          ")
+    print("=======================================================")
+    print(f"NÚMERO DO ORÇAMENTO: {orcamento.numero}")
+    print(f"NOME DO CLIENTE: {orcamento.cliente.nome} {orcamento.cliente.sobrenome}")
+    print(f"CEP: {orcamento.cliente.cep[:5]}-{orcamento.cliente.cep[5:]}")
+    print(f"CPF DO CLIENTE: {orcamento.cliente.cpf[:3]}.{orcamento.cliente.cpf[3:6]}.{orcamento.cliente.cpf[6:9]}-{orcamento.cliente.cpf[9:]}")
+    print(f"TELEFONE: +55 81 9 {orcamento.cliente.contato[:4]}-{orcamento.cliente.contato[4:]}")
+    print(f"NOME DO PET: {orcamento.pet.nome}")
+    print(f"RAÇA DO PET: {orcamento.pet.raca}")
+    print(f"IDADE DO PET: {orcamento.pet.idade} anos")
+    print(f"TOTAL DO SERVIÇO: R$ {orcamento.valor_total:.2f} reais")
+    print(f"- REFERENTE AOS SERVIÇOS DE {orcamento.servico}")
+    print("=======================================================")
+    print("                                                    ")
+    print("=======================================================")
+    print("                 ATÉ AQUI NOS AJUDOU O SENHOR!         ")
+    print("=======================================================")
+
+def main():
+    cliente = obter_dados_cliente()
+    pet = obter_dados_pet()
+    numero_orcamento = obter_numero_orcamento()
+    valor_total = 120.00
+    servico = "BANHO E TOSA COM TESOURA"
+    orcamento = Orcamento(numero_orcamento, cliente, pet, valor_total, servico)
+    imprimir_orcamento(orcamento)
+
+main()
